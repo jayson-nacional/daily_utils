@@ -10,7 +10,7 @@ for file in $(pwd)/*; do
 		case "$ext" in
             mp4|mov)
                 echo "Processing video: $file"
-				HandBrakeCLI -i "$file" -o "$(pwd)/compressed/$(basename ${file%.*})__.mp4" --preset="Fast 1080p30" -e x265 -q 22 -E av_aac --optimize --non-anamorphic
+				HandBrakeCLI -i "$file" -o "$(pwd)/compressed/$(basename ${file%.*}).mp4" --preset="Fast 1080p30" -e x265 -q 22 -E av_aac --optimize --non-anamorphic
                 ;;
             *)
                 echo "Skipping non-video file: $file"
