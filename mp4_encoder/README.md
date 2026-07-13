@@ -1,5 +1,6 @@
 # Dependencies  
 1. HandBrakeCLI  
+2. ffmpeg
 
 # Linux / MacOS
 1. Copy the bash script (**mp4_encoder.sh**) or directly clone the repository
@@ -10,4 +11,4 @@
 1. Copy the powershell script (**mp4_encoder.ps1**)
 2. Run the script where the media files are located  
 
-*Note: Encoded files are to be found on the compressed folder*
+*Note: Encoded files are to be found on the compressed folder. Temporary files are loaded on the ```encoded``` and ```thumbnails``` folder, don't remove those while compression is ongoing*

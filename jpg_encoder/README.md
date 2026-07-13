@@ -1,5 +1,5 @@
 # Dependencies  
-1. imagemick
+1. imagemagick
 2. libheif
 
 # Linux / MacOS

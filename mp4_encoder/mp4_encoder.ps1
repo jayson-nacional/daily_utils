@@ -9,7 +9,7 @@ Get-ChildItem -Path . -File | ForEach-Object {
 		{ $_ -in ".mp4", "mov"}
 		{
 			Write-Host "Processing file: $fullPath"
-			HandBrakeCLI -i "$fullPath" -o "$($PSScriptRoot)/compressed/$($baseName).mp4" --preset="Fast 1080p30" -e x265 -E av_aac  -q 22 --optimize --non-anamorphic
+			HandBrakeCLI -i "$fullPath" -o "$($PSScriptRoot)/compressed/$($baseName).mp4" --preset="Fast 1080p30" -e x265 -E av_aac  -q 22 --optimize --non-anamorphic --keep-metadata
 		}
 		default
 		{
