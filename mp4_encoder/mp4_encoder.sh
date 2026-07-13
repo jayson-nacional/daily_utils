@@ -21,6 +21,10 @@ for file in $(pwd)/*; do
 
 				# Embed thumbnail
 				ffmpeg -y -i "$(pwd)/encoded/$(basename ${file%.*}).mp4" -i "$(pwd)/thumbnails/$(basename ${file%.*}).jpg" -map 0 -map 1 -c copy -disposition:v:1 attached_pic "$(pwd)/compressed/$(basename ${file%.*}).mp4"
+
+				# Restore metadata
+				exiftool -tagsFromFile "$file" -FileCreateDate -FileModifyDate "$(pwd)/compressed/$(basename ${file%.*}).mp4"
+
 				;;
             *)
                 echo "Skipping non-video file: $file"
@@ -34,3 +38,4 @@ echo "Removing temp files..."
 rm -r "$(pwd)/encoded"
 rm -r "$(pwd)/thumbnails"
 echo "Operation succeeded..."
+echo -e "\a"

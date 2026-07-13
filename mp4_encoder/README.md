@@ -1,6 +1,7 @@
 # Dependencies  
 1. HandBrakeCLI  
 2. ffmpeg
+3. exiftool
 
 # Linux / MacOS
 1. Copy the bash script (**mp4_encoder.sh**) or directly clone the repository
