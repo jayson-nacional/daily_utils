@@ -1,3 +1,6 @@
+# Dependencies  
+1. HandBrakeCLI  
+
 # Linux / MacOS
 1. Copy the bash script (**mp4_encoder.sh**) or directly clone the repository
 2. Make the script executable. ```chmod +x mp4_encoder.sh```
