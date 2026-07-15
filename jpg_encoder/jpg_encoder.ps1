@@ -1,4 +1,6 @@
-$null = New-Item -Path (Join-Path $PSScriptRoot "compressed") -ItemType Directory -Force
+$currentWorkingDirectory = $ExecutionContext.SessionState.Path.CurrentLocation.Path
+$compressedTargetPath = Join-Path -Path $currentWorkingDirectory -ChildPath "compressed"
+New-Item -ItemType Directory -Path $compressedTargetPath -Force | Out-Null
 
 Get-ChildItem -Path . -File | ForEach-Object {
 	$fullPath = $_.FullName
@@ -9,10 +11,10 @@ Get-ChildItem -Path . -File | ForEach-Object {
 		{ $_ -in ".jpg", ".jpeg", ".heic" }
 		{
 			Write-Host "Processing image: $fullPath"
-			magick "$fullPath" -interlace Plane -sampling-factor 4:2:0 -define jpeg:dct-method=float -quality 85 "$($PSScriptRoot)/compressed/$($baseName).jpg"
+			magick "$fullPath" -strip -interlace Plane -sampling-factor 4:2:0 -define jpeg:dct-method=float -quality 85 "$($compressedTargetPath)/$($baseName).jpg"
 			
 			# Restore metadata
-			exiftool -tagsFromFile "$fullPath" -FileCreateDate -FileModifyDate "$($PSScriptRoot)/compressed/$($baseName).jpg"
+			exiftool -tagsFromFile "$fullPath" -FileCreateDate -FileModifyDate "$($compressedTargetPath)/$($baseName).jpg"
 		}
 		default
 		{
@@ -22,4 +24,4 @@ Get-ChildItem -Path . -File | ForEach-Object {
 }
 Write-Host "Operation succeeded!"
 
-[console]::beep(2000, 3000)% 
+[console]::beep(2000, 3000)
